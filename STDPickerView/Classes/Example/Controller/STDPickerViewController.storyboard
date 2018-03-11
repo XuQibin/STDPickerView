@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f0E-Lm-57h">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Yr7-yb-PNZ">
+            <objects>
+                <navigationController id="f0E-Lm-57h" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gzK-rw-Ynx">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Ip1-fP-rho" kind="relationship" relationship="rootViewController" id="dRu-kq-A1Q"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="thb-D3-X8f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1842" y="9"/>
+        </scene>
+        <!--STDPickerView-->
+        <scene sceneID="klD-S7-geC">
+            <objects>
+                <tableViewController id="Ip1-fP-rho" customClass="STDPickerTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="gtZ-vl-ISE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="CUSTOMIZE" footerTitle="You can also set more custom apperance through 'STDPickerView.h' methods" id="jC4-UC-2pj">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="250" id="dbX-TS-4Op">
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="250"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dbX-TS-4Op" id="zdj-Fw-MSH">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="249.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Items Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6B-p4-F4k">
+                                                    <rect key="frame" x="18" y="15" width="339" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="GLM-Ws-73K"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.30588235289999999" green="0.3803921569" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Yvy-GV-HR7">
+                                                    <rect key="frame" x="18" y="45" width="339" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="KWc-KR-2cQ"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="Text"/>
+                                                        <segment title="Custom"/>
+                                                    </segments>
+                                                    <color key="tintColor" red="0.16078431369999999" green="0.70588235290000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="segmentedSelectedChange:" destination="Ip1-fP-rho" eventType="valueChanged" id="OCM-Cd-fun"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selection Indicator Style" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bp-oq-ql0">
+                                                    <rect key="frame" x="18" y="90" width="339" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.30588235289999999" green="0.3803921569" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tIX-93-ErR">
+                                                    <rect key="frame" x="18" y="120" width="339" height="31"/>
+                                                    <segments>
+                                                        <segment title="None"/>
+                                                        <segment title="Default"/>
+                                                        <segment title="Division"/>
+                                                        <segment title="Custom"/>
+                                                    </segments>
+                                                    <color key="tintColor" red="0.16078431369999999" green="0.70588235290000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="segmentedSelectedChange:" destination="Ip1-fP-rho" eventType="valueChanged" id="Imp-rn-V1T"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vertical Division Line" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KgY-OB-eO3">
+                                                    <rect key="frame" x="18" y="165" width="339" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.30588235289999999" green="0.3803921569" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vma-M7-Ah6">
+                                                    <rect key="frame" x="18" y="195" width="339" height="31"/>
+                                                    <segments>
+                                                        <segment title="Hide"/>
+                                                        <segment title="Show"/>
+                                                    </segments>
+                                                    <color key="tintColor" red="0.16078431369999999" green="0.70588235290000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="segmentedSelectedChange:" destination="Ip1-fP-rho" eventType="valueChanged" id="GT3-4U-dey"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="KgY-OB-eO3" firstAttribute="leading" secondItem="5bp-oq-ql0" secondAttribute="leading" id="0sk-aK-kqe"/>
+                                                <constraint firstAttribute="trailing" secondItem="m6B-p4-F4k" secondAttribute="trailing" constant="18" id="3Qo-Ar-AWR"/>
+                                                <constraint firstItem="tIX-93-ErR" firstAttribute="trailing" secondItem="5bp-oq-ql0" secondAttribute="trailing" id="4FV-2K-NtB"/>
+                                                <constraint firstItem="KgY-OB-eO3" firstAttribute="height" secondItem="5bp-oq-ql0" secondAttribute="height" id="9XL-8u-v9Q"/>
+                                                <constraint firstItem="Yvy-GV-HR7" firstAttribute="leading" secondItem="m6B-p4-F4k" secondAttribute="leading" id="A56-ib-pwz"/>
+                                                <constraint firstItem="5bp-oq-ql0" firstAttribute="top" secondItem="Yvy-GV-HR7" secondAttribute="bottom" constant="15" id="Cjt-qQ-dbd"/>
+                                                <constraint firstItem="5bp-oq-ql0" firstAttribute="leading" secondItem="m6B-p4-F4k" secondAttribute="leading" id="DsH-ej-3vC"/>
+                                                <constraint firstItem="vma-M7-Ah6" firstAttribute="height" secondItem="tIX-93-ErR" secondAttribute="height" id="Pcx-hJ-gzM"/>
+                                                <constraint firstItem="KgY-OB-eO3" firstAttribute="top" secondItem="tIX-93-ErR" secondAttribute="bottom" constant="15" id="Q6l-Ds-qCe"/>
+                                                <constraint firstItem="tIX-93-ErR" firstAttribute="leading" secondItem="5bp-oq-ql0" secondAttribute="leading" id="QUV-11-wFa"/>
+                                                <constraint firstItem="5bp-oq-ql0" firstAttribute="height" secondItem="m6B-p4-F4k" secondAttribute="height" id="QkR-Yb-1fE"/>
+                                                <constraint firstItem="Yvy-GV-HR7" firstAttribute="trailing" secondItem="m6B-p4-F4k" secondAttribute="trailing" id="RaB-1L-fLJ"/>
+                                                <constraint firstItem="tIX-93-ErR" firstAttribute="top" secondItem="5bp-oq-ql0" secondAttribute="bottom" constant="8" id="Syp-jE-7LB"/>
+                                                <constraint firstItem="m6B-p4-F4k" firstAttribute="top" secondItem="zdj-Fw-MSH" secondAttribute="top" constant="15" id="Xjf-gg-ZuO"/>
+                                                <constraint firstItem="vma-M7-Ah6" firstAttribute="leading" secondItem="KgY-OB-eO3" secondAttribute="leading" id="beh-hI-KZX"/>
+                                                <constraint firstItem="5bp-oq-ql0" firstAttribute="trailing" secondItem="m6B-p4-F4k" secondAttribute="trailing" id="bpK-25-HAS"/>
+                                                <constraint firstItem="tIX-93-ErR" firstAttribute="height" secondItem="Yvy-GV-HR7" secondAttribute="height" id="fXN-uo-QN0"/>
+                                                <constraint firstItem="vma-M7-Ah6" firstAttribute="top" secondItem="KgY-OB-eO3" secondAttribute="bottom" constant="8" id="g31-1k-eaz"/>
+                                                <constraint firstItem="Yvy-GV-HR7" firstAttribute="top" secondItem="m6B-p4-F4k" secondAttribute="bottom" constant="8" id="qQ6-0O-5m8"/>
+                                                <constraint firstItem="m6B-p4-F4k" firstAttribute="leading" secondItem="zdj-Fw-MSH" secondAttribute="leading" constant="18" id="yjv-Zv-Xtr"/>
+                                                <constraint firstItem="KgY-OB-eO3" firstAttribute="trailing" secondItem="5bp-oq-ql0" secondAttribute="trailing" id="ypr-Gt-HAT"/>
+                                                <constraint firstItem="vma-M7-Ah6" firstAttribute="trailing" secondItem="KgY-OB-eO3" secondAttribute="trailing" id="z2t-Xv-j7N"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="PICK NUMBER" id="aHP-5Z-7lW">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="3cK-Qi-Pqh">
+                                        <rect key="frame" x="0.0" y="389.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3cK-Qi-Pqh" id="5G0-ds-aEy">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap here to pick number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h97-tV-yxp">
+                                                    <rect key="frame" x="18" y="11" width="339" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.16078431369999999" green="0.70588235290000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="h97-tV-yxp" firstAttribute="leading" secondItem="5G0-ds-aEy" secondAttribute="leading" constant="18" id="4u3-mU-AwB"/>
+                                                <constraint firstItem="h97-tV-yxp" firstAttribute="centerY" secondItem="5G0-ds-aEy" secondAttribute="centerY" id="9eI-q9-7KH"/>
+                                                <constraint firstAttribute="trailing" secondItem="h97-tV-yxp" secondAttribute="trailing" constant="18" id="gmX-XE-4pa"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="PICK ADDRESS" id="kvi-yk-NlO">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="6A9-Vg-YhD">
+                                        <rect key="frame" x="0.0" y="489.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6A9-Vg-YhD" id="9Dl-4c-Wom">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap here to pick address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F29-ho-fZ1">
+                                                    <rect key="frame" x="18" y="11" width="339" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.16078431369999999" green="0.70588235290000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="F29-ho-fZ1" firstAttribute="leading" secondItem="9Dl-4c-Wom" secondAttribute="leading" constant="18" id="ebK-HS-2iA"/>
+                                                <constraint firstAttribute="trailing" secondItem="F29-ho-fZ1" secondAttribute="trailing" constant="18" id="fuL-0O-SSz"/>
+                                                <constraint firstItem="F29-ho-fZ1" firstAttribute="centerY" secondItem="9Dl-4c-Wom" secondAttribute="centerY" id="v7Z-8Y-ltn"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Ip1-fP-rho" id="Su3-1h-dgc"/>
+                            <outlet property="delegate" destination="Ip1-fP-rho" id="nFC-ou-Da0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="STDPickerView" id="yz9-27-cAN"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3mE-8A-QSo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1030" y="9"/>
+        </scene>
+    </scenes>
+</document>
