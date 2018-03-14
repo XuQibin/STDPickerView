@@ -56,7 +56,7 @@
             return _selectedAddress != nil ? [NSString stringWithFormat:@"You picked the address (%@)",_selectedAddress] : @"You don't picked any address.";
 
         default:
-            return @"You can also set more custom apperance through 'STDPickerView.h' methods";
+            return @"You can also set more custom apperance through methods in 'STDPickerView.h'";
     }
 }
 

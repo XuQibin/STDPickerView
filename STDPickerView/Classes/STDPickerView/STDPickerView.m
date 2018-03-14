@@ -36,7 +36,7 @@ static CGFloat kSTDPickerViewDefaultSpacingOfComponents = 10;
 {
     if (self = [super initWithFrame:frame]) {
         
-        [self setup];
+        [self setupBaseConfig];
     }
     
     return self;
@@ -45,7 +45,7 @@ static CGFloat kSTDPickerViewDefaultSpacingOfComponents = 10;
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder]) {
-        [self setup];
+        [self setupBaseConfig];
     }
     
     return self;
@@ -152,7 +152,7 @@ static CGFloat kSTDPickerViewDefaultSpacingOfComponents = 10;
 
 #pragma mark - setup
 
-- (void)setup
+- (void)setupBaseConfig
 {
     _selectionIndicatorStyle = STDPickerViewSelectionIndicatorStyleDefault;
     

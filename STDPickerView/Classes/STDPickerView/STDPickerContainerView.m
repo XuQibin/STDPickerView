@@ -26,7 +26,7 @@ static NSString * const kSTDPickerContainerCellReuseIdentifier =  @"STDPickerCon
 
 @property (assign, nonatomic) BOOL isReloadingData;
 
-@property (assign, nonatomic) BOOL isRotating;
+@property (assign, nonatomic) BOOL isAdjustingSelected;
 
 @property (assign, nonatomic) CGRect rotatedRect;
 
@@ -40,7 +40,7 @@ static NSString * const kSTDPickerContainerCellReuseIdentifier =  @"STDPickerCon
 - (void)layoutSubviews
 {
     if (!self.isSetupDone) {
-        [self setup];
+        [self setupSubviews];
         dispatch_async(dispatch_get_main_queue(), ^{
             self.isSetupDone = YES;
             [self selectRow:self.selectedRow animated:NO];
@@ -54,14 +54,22 @@ static NSString * const kSTDPickerContainerCellReuseIdentifier =  @"STDPickerCon
 {
     if (newWindow) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(adjustCurrentSelectedAfterOrientationChange) name:UIDeviceOrientationDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationBecomeActive:) name:UIApplicationWillEnterForegroundNotification object:nil];
     } else {
         [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 }
 
 #pragma mark - notification
-- (void)keyboardWillHide:(NSNotification *)aNotification
+- (void)applicationBecomeActive:(NSNotification *)notification
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self adjustCurrentSelected];
+    });
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
 {
     if (self.isScrolling) {
         self.isScrolling = NO;
@@ -70,25 +78,30 @@ static NSString * const kSTDPickerContainerCellReuseIdentifier =  @"STDPickerCon
     }
 }
 
-- (void)adjustCurrentSelectedAfterOrientationChange
+- (void)deviceOrientationChange:(NSNotification *)notification
 {
     if (!CGSizeEqualToSize(self.rotatedRect.size, self.bounds.size)) {
         
         self.rotatedRect = self.bounds;
 
-        self.isRotating = YES;
-        
-        [self updateCollectionViewContentInset];
-
-        [self reloadDataWithLayout];
-        
-        if (self.numberOfRows > 0) {
-            self.willDeselectedRow = -1;
-            [self selectRow:self.currentRow animated:self.isScrolling];
-        }
-        
-        self.isRotating = NO;
+        [self adjustCurrentSelected];
     }
+}
+
+- (void)adjustCurrentSelected
+{
+    self.isAdjustingSelected = YES;
+    
+    [self updateCollectionViewContentInset];
+    
+    [self reloadDataWithLayout];
+    
+    if (self.numberOfRows > 0) {
+        self.willDeselectedRow = -1;
+        [self selectRow:self.currentRow animated:self.isScrolling];
+    }
+    
+    self.isAdjustingSelected = NO;
 }
 
 #pragma mark - setter and getter
@@ -116,7 +129,7 @@ static NSString * const kSTDPickerContainerCellReuseIdentifier =  @"STDPickerCon
 }
 
 #pragma mark - setup
-- (void)setup
+- (void)setupSubviews
 {
     self.rotatedRect = self.bounds;
     [self setupCollectionView];
@@ -206,7 +219,7 @@ static NSString * const kSTDPickerContainerCellReuseIdentifier =  @"STDPickerCon
         return;
     }
     
-    if (!self.isRotating) {
+    if (!self.isAdjustingSelected) {
         if ([self.delegate respondsToSelector:@selector(containerView:didSelectRow:)]) {
             [self.delegate containerView:self didSelectRow:self.currentRow];
         }
