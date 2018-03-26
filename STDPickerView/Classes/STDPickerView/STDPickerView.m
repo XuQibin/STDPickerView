@@ -19,8 +19,6 @@ static CGFloat kSTDPickerViewDefaultSpacingOfComponents = 10;
 
 @property (nonatomic, strong) NSMutableArray<STDPickerContainerView *> *containers;
 
-@property (strong, nonatomic) NSMutableDictionary<NSString *, NSValue *> *selectedTitlesRectMap;
-
 @property (strong, nonatomic) NSMutableArray *selectedRowsMap;
 
 @property (assign, nonatomic) BOOL isSetupDone;
@@ -65,16 +63,6 @@ static CGFloat kSTDPickerViewDefaultSpacingOfComponents = 10;
 }
 
 #pragma mark - setter and getter
-
-- (NSMutableDictionary<NSString *,NSValue *> *)selectedTitlesRectMap
-{
-    if (!_selectedTitlesRectMap) {
-        _selectedTitlesRectMap = [NSMutableDictionary dictionary];
-    }
-
-    return _selectedTitlesRectMap;
-}
-
 - (NSMutableArray *)selectedRowsMap
 {
     if (!_selectedRowsMap) {
@@ -375,24 +363,16 @@ static CGFloat kSTDPickerViewDefaultSpacingOfComponents = 10;
             textView = [[STDPickerTextRenderView alloc] initWithFrame:CGRectMake(0, 0, containerView.frame.size.width, [self rowHeightForComponent:component])];
             
             textView.backgroundColor = [UIColor clearColor];
-            textView.selectedTextDrawingRect = CGRectZero;
-            
-            [self.selectedTitlesRectMap setValue:[NSValue valueWithCGRect:CGRectZero] forKey:[NSString stringWithFormat:@"%zd%zd",component,row]];
+            textView.textColor = self.textColor;
+            textView.font = self.font;
+            textView.selectedTextColor = self.selectedTextColor;
             
             view = textView;
         }
         
         NSString *title = [self.dataSource pickerView:self titleForRow:row forComponent:component];
         
-        NSValue *rectValue = [self.selectedTitlesRectMap valueForKey:[NSString stringWithFormat:@"%zd%zd",component,row]];
-        
-        textView.textColor = self.textColor;
-        textView.font = self.font;
-        textView.selectedTextColor = self.selectedTextColor;
-        
         textView.text = title;
-        textView.selectedTextDrawingRect = rectValue ? rectValue.CGRectValue : CGRectZero;
-        
     }
     
     return view;
@@ -418,7 +398,6 @@ static CGFloat kSTDPickerViewDefaultSpacingOfComponents = 10;
         [containerView.visibleItemViews enumerateObjectsUsingBlock:^(STDPickerTextRenderView  *_Nonnull textView, NSUInteger idx, BOOL * _Nonnull stop) {
             textView.selectedTextDrawingRect = CGRectZero;
             
-            [self.selectedTitlesRectMap setValue:[NSValue valueWithCGRect:CGRectZero] forKey:[NSString stringWithFormat:@"%zd%zd",component,[containerView rowForView:textView]]];
         }];
         
         if (floorRow < 0) {
@@ -462,8 +441,6 @@ static CGFloat kSTDPickerViewDefaultSpacingOfComponents = 10;
 #pragma mark - tools
 - (void)renderTextViewInRow:(NSInteger)row forContainerView:(STDPickerContainerView *)containerView
 {
-    NSUInteger component = [self.containers indexOfObject:containerView];
-
     STDPickerTextRenderView *textView = (STDPickerTextRenderView *)[containerView viewForRow:row];
     
     CGRect textViewRect = [textView.superview convertRect:textView.frame toView:self];
@@ -476,9 +453,6 @@ static CGFloat kSTDPickerViewDefaultSpacingOfComponents = 10;
     }
     
     textView.selectedTextDrawingRect = CGRectMake(0, offsetY, intersectionRect.size.width, intersectionRect.size.height);
-    
-    [self.selectedTitlesRectMap setValue:[NSValue valueWithCGRect:textView.selectedTextDrawingRect] forKey:[NSString stringWithFormat:@"%zd%zd",component,row]];
-
 }
 
 - (CGFloat)selectionIndicatorHeight
