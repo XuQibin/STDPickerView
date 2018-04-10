@@ -10,7 +10,7 @@
 
 @interface STDPickerTextRenderView : UIView
 
-@property (nonatomic, strong) NSString *text;
+@property (nonatomic, copy) NSString *text;
 
 @property (nonatomic, strong) UIFont *font;
 
